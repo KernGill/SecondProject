@@ -51,7 +51,7 @@ export class UI {
         context.fillRect(barX, barY, barWidth, barHeight);
 
         // fill
-        context.fillStyle = 'lime';
+        context.fillStyle = 'blue';
         context.fillRect(barX, barY, barWidth * energyRatio, barHeight);
 
         // border
