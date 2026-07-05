@@ -29,6 +29,12 @@ export class UI {
         context.fillText('Time: ' + (this.game.time * 0.001).toFixed(1), 20, 80);
 
         // ------------------
+        // FPS
+        // ------------------
+        context.font = this.fontSize * 0.6 + 'px ' + this.fontFamily;
+        context.fillText('FPS: ' + this.game.fps, this.game.width - 90, 30);
+
+        // ------------------
         // ENERGY BAR
         // ------------------
         const barX = 20;

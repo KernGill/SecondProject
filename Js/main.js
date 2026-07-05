@@ -46,6 +46,8 @@ window.addEventListener('load', function(){
 
             this.gameOverTimer = 0;
 
+            this.fps = 0;
+
             this.player.currentState = this.player.states[0];
             this.player.currentState.enter();
         }
@@ -181,14 +183,27 @@ window.addEventListener('load', function(){
 
     let lastTime = 0;
 
+    // -------------------------
+    // FPS CAP
+    // -------------------------
+    const fpsCap = 60;
+    const frameInterval = 1000 / fpsCap;
+    let frameTimer = 0;
+
     function animate(timeStamp){
         const deltaTime = timeStamp - lastTime;
         lastTime = timeStamp;
+        frameTimer += deltaTime;
 
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (frameTimer >= frameInterval) {
+            game.fps = Math.round(1000 / frameTimer);
+            frameTimer = 0;
 
-        game.update(deltaTime);
-        game.draw(ctx);
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            game.update(deltaTime);
+            game.draw(ctx);
+        }
 
         requestAnimationFrame(animate);
     }
